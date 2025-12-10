@@ -34,7 +34,7 @@ const updateEntry = (req, res) => {
             return;
         }
 
-        res.status(200).send("User has been updated");
+        res.status(200).send("Student has been updated");
     });
 };
 
