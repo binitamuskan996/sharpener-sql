@@ -5,7 +5,7 @@ const studentRoutes=require('./routes/studentsRoute');
 const userRoutes=require('./routes/usersRoute');
 const busRoutes=require('./routes/busesRoute');
 
-const studentModel=require('./models/studentModel')
+const studentModel=require('./models/students')
 
 app.use(express.json());              
 app.get('/', (req, res) => {
@@ -18,7 +18,7 @@ app.use('/buses',busRoutes);
 //     console.log("Server is running");
 // });
 
-db.sync({force:true}).then(()=>{
+db.sync({force:false}).then(()=>{
     app.listen(3000,()=>{
         console.log("Server is running");
     });
