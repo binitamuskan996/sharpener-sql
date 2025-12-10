@@ -1,81 +1,103 @@
-const mysql = require('mysql2');
+const { Sequelize } = require('sequelize');
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Binita@123',
-    database: 'testdb'
+const sequelize = new Sequelize('testdb','root','Binita@123',{
+      host: 'localhost',
+      dialect:'mysql'
 });
-const createTable = (query) => {
-    connection.execute(query, (err) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log("Table is created");
-    });
-};
-connection.connect((err) => {
-    if (err) {
-        console.log(err);
-        return;
-    }
 
-    console.log("Connection has been created");
+(async ()=>{try {
 
-    const studentsTable = `
-        CREATE TABLE IF NOT EXISTS Students (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(20),
-            email VARCHAR(255) UNIQUE,
-            age INT  
-            )
-    `;
-    const usersTable = `
-        CREATE TABLE IF NOT EXISTS Users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255),
-            email VARCHAR(255)
-        )
-    `;
+    await sequelize.authenticate();
+    console.log("Connection to the Database has been created");
 
-    const busesTable = `
-        CREATE TABLE IF NOT EXISTS Buses (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            busNumber VARCHAR(50),
-            totalSeats INT,
-            availableSeats INT
-        )
-    `;
+} catch (error) {
 
-    const bookingsTable = `
-        CREATE TABLE IF NOT EXISTS Bookings (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            seatNumber INT
-        )
-    `;
+    console.log(error);
+}})();
 
-    const paymentsTable = `
-        CREATE TABLE IF NOT EXISTS Payments (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            amountPaid INT,
-            paymentStatus VARCHAR(50)
-        )
-    `;
+module.exports=sequelize;
 
-    // connection.execute((creationQuery), (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //         connection.end();
-    //         return;
-    //     }
 
-    //     console.log("Table is created");
-    // });
-    createTable(studentsTable);
-    createTable(usersTable);
-    createTable(busesTable);
-    createTable(bookingsTable);
-    createTable(paymentsTable);
-});
-module.exports = connection;
+
+
+// const mysql = require('mysql2');
+
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Binita@123',
+//     database: 'testdb'
+// });
+// const createTable = (query) => {
+//     connection.execute(query, (err) => {
+//         if (err) {
+//             console.log(err);
+//             return;
+//         }
+//         console.log("Table is created");
+//     });
+// };
+// connection.connect((err) => {
+//     if (err) {
+//         console.log(err);
+//         return;
+//     }
+
+//     console.log("Connection has been created");
+
+//     const studentsTable = `
+//         CREATE TABLE IF NOT EXISTS Students (
+//             id INT AUTO_INCREMENT PRIMARY KEY,
+//             name VARCHAR(20),
+//             email VARCHAR(255) UNIQUE,
+//             age INT  
+//             )
+//     `;
+//     const usersTable = `
+//         CREATE TABLE IF NOT EXISTS Users (
+//             id INT AUTO_INCREMENT PRIMARY KEY,
+//             name VARCHAR(255),
+//             email VARCHAR(255)
+//         )
+//     `;
+
+//     const busesTable = `
+//         CREATE TABLE IF NOT EXISTS Buses (
+//             id INT AUTO_INCREMENT PRIMARY KEY,
+//             busNumber VARCHAR(50),
+//             totalSeats INT,
+//             availableSeats INT
+//         )
+//     `;
+
+//     const bookingsTable = `
+//         CREATE TABLE IF NOT EXISTS Bookings (
+//             id INT AUTO_INCREMENT PRIMARY KEY,
+//             seatNumber INT
+//         )
+//     `;
+
+//     const paymentsTable = `
+//         CREATE TABLE IF NOT EXISTS Payments (
+//             id INT AUTO_INCREMENT PRIMARY KEY,
+//             amountPaid INT,
+//             paymentStatus VARCHAR(50)
+//         )
+//     `;
+
+//     // connection.execute((creationQuery), (err) => {
+//     //     if (err) {
+//     //         console.log(err);
+//     //         connection.end();
+//     //         return;
+//     //     }
+
+//     //     console.log("Table is created");
+//     // });
+//     createTable(studentsTable);
+//     createTable(usersTable);
+//     createTable(busesTable);
+//     createTable(bookingsTable);
+//     createTable(paymentsTable);
+// });
+// module.exports = connection;

@@ -5,6 +5,8 @@ const studentRoutes=require('./routes/studentsRoute');
 const userRoutes=require('./routes/usersRoute');
 const busRoutes=require('./routes/busesRoute');
 
+const studentModel=require('./models/studentModel')
+
 app.use(express.json());              
 app.get('/', (req, res) => {
     res.send('Hello world');
@@ -12,6 +14,14 @@ app.get('/', (req, res) => {
 app.use('/students',studentRoutes)
 app.use('/users',userRoutes)
 app.use('/buses',busRoutes);
-app.listen(3000, (err) => {
-    console.log("Server is running");
-});
+// app.listen(3000, (err) => {
+//     console.log("Server is running");
+// });
+
+db.sync({force:true}).then(()=>{
+    app.listen(3000,()=>{
+        console.log("Server is running");
+    });
+}).catch((err)=>{
+    console.log(err);
+})
