@@ -25,7 +25,7 @@ connection.connect((err) => {
     //     )
     // `;
     const usersTable = `
-        CREATE TABLE IF NOT EXISTS Users (
+        CREATE TABLE Users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255),
             email VARCHAR(255)
@@ -33,7 +33,7 @@ connection.connect((err) => {
     `;
 
     const busesTable = `
-        CREATE TABLE IF NOT EXISTS Buses (
+        CREATE TABLE  Buses (
             id INT AUTO_INCREMENT PRIMARY KEY,
             busNumber VARCHAR(50),
             totalSeats INT,
@@ -42,14 +42,14 @@ connection.connect((err) => {
     `;
 
     const bookingsTable = `
-        CREATE TABLE IF NOT EXISTS Bookings (
+        CREATE TABLE Bookings (
             id INT AUTO_INCREMENT PRIMARY KEY,
             seatNumber INT
         )
     `;
 
     const paymentsTable = `
-        CREATE TABLE IF NOT EXISTS Payments (
+        CREATE TABLE Payments (
             id INT AUTO_INCREMENT PRIMARY KEY,
             amountPaid INT,
             paymentStatus VARCHAR(50)
