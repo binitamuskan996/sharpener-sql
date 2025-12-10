@@ -17,23 +17,61 @@ connection.connect((err) => {
 
     console.log("Connection has been created");
 
-    const creationQuery = `
-        CREATE TABLE Students (
+    // const creationQuery = `
+    //     CREATE TABLE Students (
+    //         id INT AUTO_INCREMENT PRIMARY KEY,
+    //         name VARCHAR(20),
+    //         email VARCHAR(20)
+    //     )
+    // `;
+    const usersTable = `
+        CREATE TABLE IF NOT EXISTS Users (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(20),
-            email VARCHAR(20)
+            name VARCHAR(255),
+            email VARCHAR(255)
         )
     `;
 
-    connection.execute(creationQuery, (err) => {
-        if (err) {
-            console.log(err);
-            connection.end();
-            return;
-        }
+    const busesTable = `
+        CREATE TABLE IF NOT EXISTS Buses (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            busNumber VARCHAR(50),
+            totalSeats INT,
+            availableSeats INT
+        )
+    `;
 
-        console.log("Table is created");
-    });
+    const bookingsTable = `
+        CREATE TABLE IF NOT EXISTS Bookings (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            seatNumber INT
+        )
+    `;
+
+    const paymentsTable = `
+        CREATE TABLE IF NOT EXISTS Payments (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            amountPaid INT,
+            paymentStatus VARCHAR(50)
+        )
+    `;
+
+    connection.query(usersTable);
+    connection.query(busesTable);
+    connection.query(bookingsTable);
+    connection.query(paymentsTable);
+
+    // connection.execute(creationQuery, (err) => {
+    //     if (err) {
+    //         console.log(err);
+    //         connection.end();
+    //         return;
+    //     }
+
+    //     console.log("Table is created");
+    // });
+     console.log("All tables created successfully");
+
 });
 
 app.get('/', (req, res) => {
