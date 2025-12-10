@@ -6,6 +6,10 @@ const userRoutes=require('./routes/usersRoute');
 const busRoutes=require('./routes/busesRoute');
 
 const studentModel=require('./models/students')
+const userModel=require('./models/users');
+const busModel=require('./models/buses');
+const bookingModel=require('./models/bookings');
+const paymentModel=require('./models/payments');
 
 app.use(express.json());              
 app.get('/', (req, res) => {
