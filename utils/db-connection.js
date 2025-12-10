@@ -27,8 +27,9 @@ connection.connect((err) => {
         CREATE TABLE IF NOT EXISTS Students (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(20),
-            email VARCHAR(20)
-        )
+            email VARCHAR(255) UNIQUE,
+            age INT  
+            )
     `;
     const usersTable = `
         CREATE TABLE IF NOT EXISTS Users (
@@ -77,4 +78,4 @@ connection.connect((err) => {
     createTable(bookingsTable);
     createTable(paymentsTable);
 });
-module.exports=connection;
+module.exports = connection;

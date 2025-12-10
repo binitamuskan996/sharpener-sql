@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.post('/add', studentController.addEntries);
 router.put('/update/:id',studentController.updateEntry);
+router.get('/get/:id',studentController.getEntryById);
+router.get('/get',studentController.getEntry);
 router.delete('/delete/:id',studentController.deleteEntry)
 module.exports = router;
