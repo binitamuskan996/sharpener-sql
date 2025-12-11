@@ -5,12 +5,12 @@ const studentRoutes=require('./routes/studentsRoute');
 const userRoutes=require('./routes/usersRoute');
 const busRoutes=require('./routes/busesRoute');
 
-const studentModel=require('./models/students')
-const userModel=require('./models/users');
-const busModel=require('./models/buses');
-const bookingModel=require('./models/bookings');
-const paymentModel=require('./models/payments');
-
+// const studentModel=require('./models/students')
+// const userModel=require('./models/users');
+// const busModel=require('./models/buses');
+// const bookingModel=require('./models/bookings');
+// const paymentModel=require('./models/payments');
+require('./models')
 app.use(express.json());              
 app.get('/', (req, res) => {
     res.send('Hello world');
