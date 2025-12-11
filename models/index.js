@@ -3,6 +3,9 @@ const IdentityCard = require('./identitycard');
 const department = require('./department');
 const courses = require('./courses');
 const studentCourses = require('./studentCourses');
+const User = require('./users');
+const Bus = require('./buses');
+const Booking = require('./bookings');
 
 //one to one
 Student.hasOne(IdentityCard);
@@ -16,9 +19,20 @@ Student.belongsTo(department);
 Student.belongsToMany(courses, {through: studentCourses});
 courses.belongsToMany(Student, {through: studentCourses});
 
+
+User.hasMany(Booking, { foreignKey: 'userId' });
+Booking.belongsTo(User, { foreignKey: 'userId' });
+
+Bus.hasMany(Booking, { foreignKey: 'busId' });
+Booking.belongsTo(Bus, { foreignKey: 'busId' });
+
+
 module.exports = {
     Student,
     IdentityCard,
     courses,
-    studentCourses
+    studentCourses,
+    User,
+    Bus,
+    Booking
 }

@@ -1,5 +1,7 @@
 const db=require('../utils/db-connection')
 const Bus=require('../models/buses')
+const Booking = require('../models/bookings');
+const User=require('../models/users')
 
 const addEntries = async (req, res) => {
   try {
@@ -72,5 +74,14 @@ const getAvailableBuses = async (req, res) => {
     // });
 };
 
+const getBusBookings = async (req, res) => {
+  const bookings = await Booking.findAll({
+    where: { busId: req.params.id },
+    include: [{ model: User, attributes: ['name', 'email'] }]
+  });
 
-module.exports={addEntries,getAvailableBuses};
+  res.json(bookings);
+};
+
+
+module.exports={addEntries,getAvailableBuses,getBusBookings};
