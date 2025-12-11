@@ -4,7 +4,7 @@ const app = express();
 const studentRoutes=require('./routes/studentsRoute');
 const userRoutes=require('./routes/usersRoute');
 const busRoutes=require('./routes/busesRoute');
-
+const courseRoutes=require('./routes/courseRoutes');
 // const studentModel=require('./models/students')
 // const userModel=require('./models/users');
 // const busModel=require('./models/buses');
@@ -18,6 +18,8 @@ app.get('/', (req, res) => {
 app.use('/students',studentRoutes)
 app.use('/users',userRoutes)
 app.use('/buses',busRoutes);
+app.use('/courses',courseRoutes)
+
 // app.listen(3000, (err) => {
 //     console.log("Server is running");
 // });
